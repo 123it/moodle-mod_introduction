@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="mod/introduction/db" VERSION="2011102404" COMMENT="XMLDB file for Moodle mod/introduction"
+<XMLDB PATH="mod/introduction/db" VERSION="20111025" COMMENT="XMLDB file for Moodle mod/introduction"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
   <TABLES>
-    <TABLE NAME="introduction" COMMENT="Default comment for introduction, please edit me">
+    <TABLE NAME="introduction" COMMENT="Default comment for introduction, please edit me" NEXT="introduction_definitions">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="course"/>
         <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course introduction activity belongs to" PREVIOUS="id" NEXT="name"/>
@@ -20,6 +20,28 @@
       <INDEXES>
         <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
       </INDEXES>
+    </TABLE>
+    <TABLE NAME="introduction_definitions" COMMENT="Definition fields for introductions" PREVIOUS="introduction" NEXT="introduction_submissions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="id_introduction"/>
+        <FIELD NAME="id_introduction" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="id_introduction"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="introduction_submissions" COMMENT="Submission data for introductions" PREVIOUS="introduction_definitions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="id_introduction"/>
+        <FIELD NAME="id_introduction" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="id_introduction_definition"/>
+        <FIELD NAME="id_introduction_definition" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id_introduction" NEXT="userid"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id_introduction_definition" NEXT="data"/>
+        <FIELD NAME="data" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" PREVIOUS="userid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
     </TABLE>
   </TABLES>
 </XMLDB>
