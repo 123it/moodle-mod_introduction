@@ -16,7 +16,7 @@
  *
  * @see upgrade_plugins_modules()
  */
-function xmldb_newmodule_install() {
+function xmldb_introduction_install() {
 }
 
 /**
@@ -24,5 +24,5 @@ function xmldb_newmodule_install() {
  *
  * @see upgrade_plugins_modules()
  */
-function xmldb_newmodule_install_recovery() {
+function xmldb_introduction_install_recovery() {
 }

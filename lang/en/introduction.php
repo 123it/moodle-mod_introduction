@@ -15,14 +15,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'introduction';
-$string['modulenameplural'] = 'introductions';
-$string['modulename_help'] = 'Use the introduction module to assign students their introduction as the first assignment of the course. | The introduction module allows the customization of the content required to complete the activity.';
+$string['modulename'] = 'Introduction';
+$string['modulenameplural'] = 'Introductions';
+$string['modulename_help'] = 'Use the introduction module in order to require students introduce themselves as the first assignment of the course. | The introduction module allows the customization of the content required to complete the activity.';
 
 $string['introductionfieldset'] = 'Custom example fieldset';
-$string['introductionname'] = 'introduction name';
-$string['introductionname_help'] = 'This is the content of the help tooltip associated with the introduction field. Markdown syntax is supported.';
+$string['introductionname'] = 'Introduction name';
+$string['introductionname_help'] = 'This is the name that be used to identify the activity along the course.';
 
-$string['introduction'] = 'introduction';
-$string['pluginadministration'] = 'introduction administration';
-$string['pluginname'] = 'introduction';
+$string['introduction'] = 'Introduction';
+$string['pluginadministration'] = 'Introduction administration';
+$string['pluginname'] = 'Introduction';

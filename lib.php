@@ -14,7 +14,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 /** example constant */
-//define('NEWMODULE_ULTIMATE_ANSWER', 42);
+//define('introduction_ULTIMATE_ANSWER', 42);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Moodle core API                                                            //
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param string $feature FEATURE_xx constant for requested feature
  * @return mixed true if the feature is supported, null if unknown
  */
-function newmodule_supports($feature) {
+function introduction_supports($feature) {
     switch($feature) {
         case FEATURE_MOD_INTRO:         return true;
         default:                        return null;
@@ -35,51 +35,51 @@ function newmodule_supports($feature) {
 }
 
 /**
- * Saves a new instance of the newmodule into the database
+ * Saves a new instance of the introduction into the database
  *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will create a new instance and return the id number
  * of the new instance.
  *
- * @param object $newmodule An object from the form in mod_form.php
- * @param mod_newmodule_mod_form $mform
- * @return int The id of the newly inserted newmodule record
+ * @param object $introduction An object from the form in mod_form.php
+ * @param mod_introduction_mod_form $mform
+ * @return int The id of the newly inserted introduction record
  */
-function newmodule_add_instance(stdClass $newmodule, mod_newmodule_mod_form $mform = null) {
+function introduction_add_instance(stdClass $introduction, mod_introduction_mod_form $mform = null) {
     global $DB;
 
-    $newmodule->timecreated = time();
+    $introduction->timecreated = time();
 
     # You may have to add extra stuff in here #
 
-    return $DB->insert_record('newmodule', $newmodule);
+    return $DB->insert_record('introduction', $introduction);
 }
 
 /**
- * Updates an instance of the newmodule in the database
+ * Updates an instance of the introduction in the database
  *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will update an existing instance with new data.
  *
- * @param object $newmodule An object from the form in mod_form.php
- * @param mod_newmodule_mod_form $mform
+ * @param object $introduction An object from the form in mod_form.php
+ * @param mod_introduction_mod_form $mform
  * @return boolean Success/Fail
  */
-function newmodule_update_instance(stdClass $newmodule, mod_newmodule_mod_form $mform = null) {
+function introduction_update_instance(stdClass $introduction, mod_introduction_mod_form $mform = null) {
     global $DB;
 
-    $newmodule->timemodified = time();
-    $newmodule->id = $newmodule->instance;
+    $introduction->timemodified = time();
+    $introduction->id = $introduction->instance;
 
     # You may have to add extra stuff in here #
 
-    return $DB->update_record('newmodule', $newmodule);
+    return $DB->update_record('introduction', $introduction);
 }
 
 /**
- * Removes an instance of the newmodule from the database
+ * Removes an instance of the introduction from the database
  *
  * Given an ID of an instance of this module,
  * this function will permanently delete the instance
@@ -88,16 +88,16 @@ function newmodule_update_instance(stdClass $newmodule, mod_newmodule_mod_form $
  * @param int $id Id of the module instance
  * @return boolean Success/Failure
  */
-function newmodule_delete_instance($id) {
+function introduction_delete_instance($id) {
     global $DB;
 
-    if (! $newmodule = $DB->get_record('newmodule', array('id' => $id))) {
+    if (! $introduction = $DB->get_record('introduction', array('id' => $id))) {
         return false;
     }
 
     # Delete any dependent records here #
 
-    $DB->delete_records('newmodule', array('id' => $newmodule->id));
+    $DB->delete_records('introduction', array('id' => $introduction->id));
 
     return true;
 }
@@ -111,7 +111,7 @@ function newmodule_delete_instance($id) {
  *
  * @return stdClass|null
  */
-function newmodule_user_outline($course, $user, $mod, $newmodule) {
+function introduction_user_outline($course, $user, $mod, $introduction) {
 
     $return = new stdClass();
     $return->time = 0;
@@ -125,23 +125,23 @@ function newmodule_user_outline($course, $user, $mod, $newmodule) {
  *
  * @return string HTML
  */
-function newmodule_user_complete($course, $user, $mod, $newmodule) {
+function introduction_user_complete($course, $user, $mod, $introduction) {
     return '';
 }
 
 /**
  * Given a course and a time, this module should find recent activity
- * that has occurred in newmodule activities and print it out.
+ * that has occurred in introduction activities and print it out.
  * Return true if there was output, or false is there was none.
  *
  * @return boolean
  */
-function newmodule_print_recent_activity($course, $viewfullnames, $timestart) {
+function introduction_print_recent_activity($course, $viewfullnames, $timestart) {
     return false;  //  True if anything was printed, otherwise false
 }
 
 /**
- * Returns all activity in newmodules since a given time
+ * Returns all activity in introductions since a given time
  *
  * @param array $activities sequentially indexed array of objects
  * @param int $index
@@ -152,15 +152,15 @@ function newmodule_print_recent_activity($course, $viewfullnames, $timestart) {
  * @param int $groupid defaults to 0
  * @return void adds items into $activities and increases $index
  */
-function newmodule_get_recent_mod_activity(&$activities, &$index, $timestart, $courseid, $cmid, $userid=0, $groupid=0) {
+function introduction_get_recent_mod_activity(&$activities, &$index, $timestart, $courseid, $cmid, $userid=0, $groupid=0) {
 }
 
 /**
- * Prints single activity item prepared by {@see newmodule_get_recent_mod_activity()}
+ * Prints single activity item prepared by {@see introduction_get_recent_mod_activity()}
 
  * @return void
  */
-function newmodule_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
+function introduction_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
 }
 
 /**
@@ -171,23 +171,23 @@ function newmodule_print_recent_mod_activity($activity, $courseid, $detail, $mod
  * @return boolean
  * @todo Finish documenting this function
  **/
-function newmodule_cron () {
+function introduction_cron () {
     return true;
 }
 
 /**
- * Returns an array of users who are participanting in this newmodule
+ * Returns an array of users who are participanting in this introduction
  *
  * Must return an array of users who are participants for a given instance
- * of newmodule. Must include every user involved in the instance,
+ * of introduction. Must include every user involved in the instance,
  * independient of his role (student, teacher, admin...). The returned
  * objects must contain at least id property.
  * See other modules as example.
  *
- * @param int $newmoduleid ID of an instance of this module
+ * @param int $introductionid ID of an instance of this module
  * @return boolean|array false if no participants, array of objects otherwise
  */
-function newmodule_get_participants($newmoduleid) {
+function introduction_get_participants($introductionid) {
     return false;
 }
 
@@ -197,7 +197,7 @@ function newmodule_get_participants($newmoduleid) {
  * @example return array('moodle/site:accessallgroups');
  * @return array
  */
-function newmodule_get_extra_capabilities() {
+function introduction_get_extra_capabilities() {
     return array();
 }
 
@@ -206,21 +206,21 @@ function newmodule_get_extra_capabilities() {
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Is a given scale used by the instance of newmodule?
+ * Is a given scale used by the instance of introduction?
  *
- * This function returns if a scale is being used by one newmodule
+ * This function returns if a scale is being used by one introduction
  * if it has support for grading and scales. Commented code should be
  * modified if necessary. See forum, glossary or journal modules
  * as reference.
  *
- * @param int $newmoduleid ID of an instance of this module
- * @return bool true if the scale is used by the given newmodule instance
+ * @param int $introductionid ID of an instance of this module
+ * @return bool true if the scale is used by the given introduction instance
  */
-function newmodule_scale_used($newmoduleid, $scaleid) {
+function introduction_scale_used($introductionid, $scaleid) {
     global $DB;
 
     /** @example */
-    if ($scaleid and $DB->record_exists('newmodule', array('id' => $newmoduleid, 'grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('introduction', array('id' => $introductionid, 'grade' => -$scaleid))) {
         return true;
     } else {
         return false;
@@ -228,18 +228,18 @@ function newmodule_scale_used($newmoduleid, $scaleid) {
 }
 
 /**
- * Checks if scale is being used by any instance of newmodule.
+ * Checks if scale is being used by any instance of introduction.
  *
  * This is used to find out if scale used anywhere.
  *
  * @param $scaleid int
- * @return boolean true if the scale is used by any newmodule instance
+ * @return boolean true if the scale is used by any introduction instance
  */
-function newmodule_scale_used_anywhere($scaleid) {
+function introduction_scale_used_anywhere($scaleid) {
     global $DB;
 
     /** @example */
-    if ($scaleid and $DB->record_exists('newmodule', array('grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('introduction', array('grade' => -$scaleid))) {
         return true;
     } else {
         return false;
@@ -247,44 +247,44 @@ function newmodule_scale_used_anywhere($scaleid) {
 }
 
 /**
- * Creates or updates grade item for the give newmodule instance
+ * Creates or updates grade item for the give introduction instance
  *
  * Needed by grade_update_mod_grades() in lib/gradelib.php
  *
- * @param stdClass $newmodule instance object with extra cmidnumber and modname property
+ * @param stdClass $introduction instance object with extra cmidnumber and modname property
  * @return void
  */
-function newmodule_grade_item_update(stdClass $newmodule) {
+function introduction_grade_item_update(stdClass $introduction) {
     global $CFG;
     require_once($CFG->libdir.'/gradelib.php');
 
     /** @example */
     $item = array();
-    $item['itemname'] = clean_param($newmodule->name, PARAM_NOTAGS);
+    $item['itemname'] = clean_param($introduction->name, PARAM_NOTAGS);
     $item['gradetype'] = GRADE_TYPE_VALUE;
-    $item['grademax']  = $newmodule->grade;
+    $item['grademax']  = $introduction->grade;
     $item['grademin']  = 0;
 
-    grade_update('mod/newmodule', $newmodule->course, 'mod', 'newmodule', $newmodule->id, 0, null, $item);
+    grade_update('mod/introduction', $introduction->course, 'mod', 'introduction', $introduction->id, 0, null, $item);
 }
 
 /**
- * Update newmodule grades in the gradebook
+ * Update introduction grades in the gradebook
  *
  * Needed by grade_update_mod_grades() in lib/gradelib.php
  *
- * @param stdClass $newmodule instance object with extra cmidnumber and modname property
+ * @param stdClass $introduction instance object with extra cmidnumber and modname property
  * @param int $userid update grade of specific user only, 0 means all participants
  * @return void
  */
-function newmodule_update_grades(stdClass $newmodule, $userid = 0) {
+function introduction_update_grades(stdClass $introduction, $userid = 0) {
     global $CFG, $DB;
     require_once($CFG->libdir.'/gradelib.php');
 
     /** @example */
     $grades = array(); // populate array of grade objects indexed by userid
 
-    grade_update('mod/newmodule', $newmodule->course, 'mod', 'newmodule', $newmodule->id, 0, $grades);
+    grade_update('mod/introduction', $introduction->course, 'mod', 'introduction', $introduction->id, 0, $grades);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -302,12 +302,12 @@ function newmodule_update_grades(stdClass $newmodule, $userid = 0) {
  * @param stdClass $context
  * @return array of [(string)filearea] => (string)description
  */
-function newmodule_get_file_areas($course, $cm, $context) {
+function introduction_get_file_areas($course, $cm, $context) {
     return array();
 }
 
 /**
- * Serves the files from the newmodule file areas
+ * Serves the files from the introduction file areas
  *
  * @param stdClass $course
  * @param stdClass $cm
@@ -317,7 +317,7 @@ function newmodule_get_file_areas($course, $cm, $context) {
  * @param bool $forcedownload
  * @return void this should never return to the caller
  */
-function newmodule_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload) {
+function introduction_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload) {
     global $DB, $CFG;
 
     if ($context->contextlevel != CONTEXT_MODULE) {
@@ -334,26 +334,26 @@ function newmodule_pluginfile($course, $cm, $context, $filearea, array $args, $f
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Extends the global navigation tree by adding newmodule nodes if there is a relevant content
+ * Extends the global navigation tree by adding introduction nodes if there is a relevant content
  *
  * This can be called by an AJAX request so do not rely on $PAGE as it might not be set up properly.
  *
- * @param navigation_node $navref An object representing the navigation tree node of the newmodule module instance
+ * @param navigation_node $navref An object representing the navigation tree node of the introduction module instance
  * @param stdClass $course
  * @param stdClass $module
  * @param cm_info $cm
  */
-function newmodule_extend_navigation(navigation_node $navref, stdclass $course, stdclass $module, cm_info $cm) {
+function introduction_extend_navigation(navigation_node $navref, stdclass $course, stdclass $module, cm_info $cm) {
 }
 
 /**
- * Extends the settings navigation with the newmodule settings
+ * Extends the settings navigation with the introduction settings
  *
- * This function is called when the context for the page is a newmodule module. This is not called by AJAX
+ * This function is called when the context for the page is a introduction module. This is not called by AJAX
  * so it is safe to rely on the $PAGE.
  *
  * @param settings_navigation $settingsnav {@link settings_navigation}
- * @param navigation_node $newmodulenode {@link navigation_node}
+ * @param navigation_node $introductionnode {@link navigation_node}
  */
-function newmodule_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $newmodulenode=null) {
+function introduction_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $introductionnode=null) {
 }

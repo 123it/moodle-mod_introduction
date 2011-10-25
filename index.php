@@ -23,11 +23,11 @@ if (! $course = $DB->get_record('course', array('id' => $id))) {
 require_course_login($course);
 $context = get_context_instance(CONTEXT_COURSE, $course->id);
 
-add_to_log($course->id, 'newmodule', 'view all', "index.php?id={$course->id}", '');
+add_to_log($course->id, 'introduction', 'view all', "index.php?id={$course->id}", '');
 
 /// Print the header
 
-$PAGE->set_url('/mod/newmodule/index.php', array('id' => $id));
+$PAGE->set_url('/mod/introduction/index.php', array('id' => $id));
 $PAGE->set_title(format_string($course->fullname));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
@@ -35,15 +35,15 @@ $PAGE->set_context($context);
 // other things you may want to set - remove if not needed
 //$PAGE->set_cacheable(false);
 //$PAGE->set_focuscontrol('some-html-id');
-//$PAGE->add_body_class('newmodule-'.$somevar);
+//$PAGE->add_body_class('introduction-'.$somevar);
 
 // Output starts here
 echo $OUTPUT->header();
 
 /// Get all the appropriate data
 
-if (! $newmodules = get_all_instances_in_course('newmodule', $course)) {
-    echo $OUTPUT->heading(get_string('nonewmodules', 'newmodule'), 2);
+if (! $introductions = get_all_instances_in_course('introduction', $course)) {
+    echo $OUTPUT->heading(get_string('nointroductions', 'introduction'), 2);
     echo $OUTPUT->continue_button("view.php?id=$course->id");
     echo $OUTPUT->footer();
     die();
@@ -67,23 +67,23 @@ if ($course->format == 'weeks') {
     $table->align = array ('left', 'left', 'left');
 }
 
-foreach ($newmodules as $newmodule) {
-    if (!$newmodule->visible) {
+foreach ($introductions as $introduction) {
+    if (!$introduction->visible) {
         //Show dimmed if the mod is hidden
-        $link = '<a class="dimmed" href="view.php?id='.$newmodule->coursemodule.'">'.format_string($newmodule->name).'</a>';
+        $link = '<a class="dimmed" href="view.php?id='.$introduction->coursemodule.'">'.format_string($introduction->name).'</a>';
     } else {
         //Show normal if the mod is visible
-        $link = '<a href="view.php?id='.$newmodule->coursemodule.'">'.format_string($newmodule->name).'</a>';
+        $link = '<a href="view.php?id='.$introduction->coursemodule.'">'.format_string($introduction->name).'</a>';
     }
 
     if ($course->format == 'weeks' or $course->format == 'topics') {
-        $table->data[] = array ($newmodule->section, $link);
+        $table->data[] = array ($introduction->section, $link);
     } else {
         $table->data[] = array ($link);
     }
 }
 
-echo $OUTPUT->heading(get_string('modulenameplural', 'newmodule'), 2);
+echo $OUTPUT->heading(get_string('modulenameplural', 'introduction'), 2);
 print_table($table);
 
 /// Finish the page

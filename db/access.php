@@ -16,7 +16,7 @@ defined('MOODLE_INTERNAL') || die();
 $capabilities = array(
 
 /***************************** remove these comment marks and modify the code as needed
-    'mod/newmodule:view' => array(
+    'mod/introduction:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
@@ -28,7 +28,7 @@ $capabilities = array(
         )
     ),
 
-    'mod/newmodule:submit' => array(
+    'mod/introduction:submit' => array(
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_MODULE,

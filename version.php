@@ -13,7 +13,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$module->version   = 2011102400;              
+$module->version   = 2011102402;              
 $module->requires  = 2010112400;    		//Originally developed for Moodle 2.x  
 $module->cron      = 0;               
 $module->component = 'mod_introduction';

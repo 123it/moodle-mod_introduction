@@ -14,6 +14,6 @@
 /**
  * Custom uninstallation procedure
  */
-function xmldb_newmodule_uninstall() {
+function xmldb_introduction_uninstall() {
     return true;
 }
