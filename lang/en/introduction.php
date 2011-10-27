@@ -19,10 +19,17 @@ $string['modulename'] = 'Introduction';
 $string['modulenameplural'] = 'Introductions';
 $string['modulename_help'] = 'Use the introduction module in order to require students introduce themselves as the first assignment of the course. | The introduction module allows the customization of the content required to complete the activity.';
 
-$string['introductionfieldset'] = 'Custom example fieldset';
-$string['introductionname'] = 'Introduction name';
-$string['introductionname_help'] = 'This is the name that be used to identify the activity along the course.';
+$string['config_activityname'] = 'Activity name';
+$string['config_activityname_help'] = 'This is the name that be used to identify the activity along the course.';
+$string['config_assignmentdirections'] = 'Assignment directions';
+$string['config_requirement'] = 'Requirement';
+$string['config_addrequirement_button'] = 'Add requirement';
+$string['config_addrequirement_warning'] = 'To add multiple requirements you will need to save and then to edit this activity';
 
+$string['config_block_schedule'] = 'Schedule for this activity';
+$string['config_field_availabledate'] = 'Submission open';
+$string['config_field_duedate'] = 'Submission closed';
+ 
 $string['introduction'] = 'Introduction';
 $string['pluginadministration'] = 'Introduction administration';
 $string['pluginname'] = 'Introduction';

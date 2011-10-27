@@ -12,6 +12,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+require_once($CFG->dirroot.'/calendar/lib.php');
 
 /** example constant */
 //define('introduction_ULTIMATE_ANSWER', 42);
@@ -29,8 +30,18 @@ defined('MOODLE_INTERNAL') || die();
  */
 function introduction_supports($feature) {
     switch($feature) {
-        case FEATURE_MOD_INTRO:         return true;
-        default:                        return null;
+        case FEATURE_IDNUMBER:                return true;
+        case FEATURE_GROUPS:                  return true;
+        case FEATURE_GROUPINGS:               return false;
+        case FEATURE_GROUPMEMBERSONLY:        return false;
+        case FEATURE_MOD_INTRO:               return true;
+        case FEATURE_COMPLETION_TRACKS_VIEWS: return true;
+        case FEATURE_GRADE_HAS_GRADE:         return false;
+        case FEATURE_GRADE_OUTCOMES:          return false;
+        // case FEATURE_MOD_ARCHETYPE:           return MOD_ARCHETYPE_RESOURCE;
+        case FEATURE_BACKUP_MOODLE2:          return true;
+
+        default: return null;
     }
 }
 
@@ -51,9 +62,32 @@ function introduction_add_instance(stdClass $introduction, mod_introduction_mod_
 
     $introduction->timecreated = time();
 
-    # You may have to add extra stuff in here #
+	$introduction->key = introduction_rand_string( 16 );
 
-    return $DB->insert_record('introduction', $introduction);
+    $returnid = $DB->insert_record('introduction', $introduction);
+    
+    if ($bigbluebuttonbn->timeavailable ){
+        $event = NULL;
+        $event->name        = $bigbluebuttonbn->name;
+        $event->description = format_module_intro('bigbluebuttonbn', $bigbluebuttonbn, $bigbluebuttonbn->coursemodule);
+        $event->courseid    = $bigbluebuttonbn->course;
+        $event->groupid     = 0;
+        $event->userid      = 0;
+        $event->modulename  = 'bigbluebuttonbn';
+        $event->instance    = $returnid;
+        $event->timestart   = $bigbluebuttonbn->timeavailable;
+
+        if ( $bigbluebuttonbn->timedue ){
+            $event->timeduration = $bigbluebuttonbn->timedue - $bigbluebuttonbn->timeavailable;
+        } else {
+            $event->timeduration = 0;
+        }
+        
+        calendar_event::create($event);
+    }
+    
+    return $returnid;
+    
 }
 
 /**
